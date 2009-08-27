@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project name="Succinct" default="build">
+
+	<property name="src" value="../modules/com.threecrickets.succinct/src" />
+	<property name="lib" value="../libraries" />
+	<property name="deploy" value="../modules/com.threecrickets.succinct/deploy" />
+	<property name="dist" value="./distribution" />
+	<property name="content" value="${dist}/content" />
+	<property name="tmp" value="./tmp" />
+
+	<target name="compile" description="Compile Succinct code">
+		<mkdir dir="${tmp}" />
+		<javac srcdir="${src}" destdir="${tmp}" target="1.5">
+			<classpath>
+				<fileset dir="${lib}/jsr223/lib" />
+				<fileset dir="${lib}/scripturian/lib" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="javadoc" description="Create Succinct API docs">
+		<javadoc access="protected" author="true" excludepackagenames="**.internal.*" destdir="${content}/doc/api" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" source="1.5" sourcepath="${src}" splitindex="true" use="true" version="true" windowtitle="Succinct 1.0" doctitle="Succinct 1.0" verbose="true">
+			<link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
+			<link href="http://java.sun.com/javase/6/docs/api/" />
+			<link href="http://www.threecrickets.com/scripturian/api/" />
+			<classpath>
+				<fileset dir="${lib}/jsr223/lib" />
+				<fileset dir="${lib}/scripturian/lib" />
+			</classpath>
+			<bottom>
+				<![CDATA[<i>Copyright &#169; 2009 <a target="_top" href="http://www.threecrickets.com/">Three Crickets LLC</a>.</i>]]>
+			</bottom>
+		</javadoc>
+	</target>
+	
+	<target name="jar" depends="compile" description="Create Succinct jar">
+		<mkdir dir="${content}/lib" />
+		<jar destfile="${content}/lib/com.threecrickets.succinct.jar" basedir="${tmp}" />
+	</target>
+
+	<target name="src" description="Fetch Succinct source">
+		<copy todir="${content}/src">
+			<fileset dir="${src}" />
+		</copy>
+	</target>
+
+	<target name="deploy" depends="src, javadoc" description="Fetch deployment">
+		<copy todir="${content}">
+			<fileset dir="${deploy}" excludes="log/" />
+		</copy>
+	</target>
+	
+	<target name="package" depends="deploy, jar" description="Create Succinct zips">
+		<zip destfile="${dist}/succinct.zip">
+			<fileset dir="${content}" excludes="src/" />
+		</zip>
+	</target>
+	
+	<target name="build" depends="package" description="Build distributions" />
+	
+	<target name="clean" description="Clean">
+		<delete dir="${tmp}" />
+		<delete dir="${dist}" />
+	</target>
+	
+	<target name="rebuild" depends="clean, build" description="Clean and build distribution" />
+	
+</project>

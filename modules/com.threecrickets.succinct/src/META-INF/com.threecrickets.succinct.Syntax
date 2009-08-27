@@ -1,0 +1,53 @@
+#
+# Basics
+#
+
+Import.begin=${import 
+Import.end=}
+
+Tag.begin=${
+Tag.end=}
+
+Using.begin=(
+Using.end=)
+
+#
+# Tags
+#
+
+External=external 
+Cast==
+FormatCast=:
+
+Count=count 
+
+#
+# Blocks
+#
+
+Comment=#
+Define=define 
+Flatten=flatten
+
+ForEach=for-each 
+
+If=if 
+IfHas=if-has 
+IfHasMany=if-many 
+IfHasOne=if-one 
+IfHasNone=if-none 
+
+#
+# Within ForEach
+#
+
+# Tags
+
+Index0=index-from-0
+Index1=index-from-1
+
+# Blocks
+
+IfFirst=if-first
+IfNotFirst=if-not-first
+IfHasMore=if-more
