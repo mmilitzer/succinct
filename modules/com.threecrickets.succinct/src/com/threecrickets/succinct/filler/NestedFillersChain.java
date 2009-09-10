@@ -16,8 +16,8 @@ import java.util.Iterator;
 import com.threecrickets.succinct.Filler;
 
 /**
- * A wrapper for a {@link Filler} iterator that wraps each element in
- * turn with a {@link NestedFiller} wrapper.
+ * A wrapper for a {@link Filler} iterator that wraps each element in turn with
+ * a {@link NestedFiller} wrapper.
  * 
  * @author Tal Liron
  */

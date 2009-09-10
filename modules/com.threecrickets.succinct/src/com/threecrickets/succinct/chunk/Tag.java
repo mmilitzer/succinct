@@ -13,7 +13,6 @@ package com.threecrickets.succinct.chunk;
 
 import com.threecrickets.succinct.Syntax;
 
-
 public abstract class Tag extends Chunk
 {
 	//

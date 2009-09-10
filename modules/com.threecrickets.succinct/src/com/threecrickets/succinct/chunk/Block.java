@@ -14,7 +14,6 @@ package com.threecrickets.succinct.chunk;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public abstract class Block extends Chunk
 {
 	//

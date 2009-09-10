@@ -17,9 +17,8 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * A {@link Filler#getValue(String)} can return this value to
- * mark that parts of the value should be handled by a
- * {@link ExternalHandler}.
+ * A {@link Filler#getValue(String)} can return this value to mark that parts of
+ * the value should be handled by a {@link ExternalHandler}.
  * 
  * @author Tal Liron
  */
