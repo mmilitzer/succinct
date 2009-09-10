@@ -13,19 +13,19 @@ package com.threecrickets.succinct.scripturian;
 
 import java.io.IOException;
 
-import com.threecrickets.scripturian.ScriptSource;
+import com.threecrickets.scripturian.DocumentSource;
 import com.threecrickets.succinct.TemplateSource;
 import com.threecrickets.succinct.TemplateSourceException;
 
-public class ScripturianTemplateSource<S> implements TemplateSource
+public class ScripturianTemplateSource<D> implements TemplateSource
 {
 	//
 	// Construction
 	//
 
-	public ScripturianTemplateSource( ScriptSource<S> scriptSource )
+	public ScripturianTemplateSource( DocumentSource<D> documentSource )
 	{
-		this.scriptSource = scriptSource;
+		this.documentSource = documentSource;
 	}
 
 	//
@@ -36,7 +36,7 @@ public class ScripturianTemplateSource<S> implements TemplateSource
 	{
 		try
 		{
-			return scriptSource.getScriptDescriptor( name ).getText();
+			return documentSource.getDocumentDescriptor( name ).getText();
 		}
 		catch( IOException x )
 		{
@@ -47,5 +47,5 @@ public class ScripturianTemplateSource<S> implements TemplateSource
 	// //////////////////////////////////////////////////////////////////////////
 	// Private
 
-	private final ScriptSource<S> scriptSource;
+	private final DocumentSource<D> documentSource;
 }

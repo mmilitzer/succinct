@@ -13,7 +13,7 @@ package com.threecrickets.succinct.scripturian;
 
 import javax.script.ScriptEngine;
 
-import com.threecrickets.scripturian.CompositeScript;
+import com.threecrickets.scripturian.Document;
 import com.threecrickets.scripturian.ScriptEngines;
 import com.threecrickets.scripturian.ScriptletParsingHelper;
 import com.threecrickets.succinct.BasicTemplate;
@@ -36,32 +36,32 @@ public class SuccinctScriptletParsingHelper implements ScriptletParsingHelper
 		return false;
 	}
 
-	public String getScriptletHeader( CompositeScript compositeScript, ScriptEngine engine )
+	public String getScriptletHeader( Document document, ScriptEngine engine )
 	{
 		return "";
 	}
 
-	public String getScriptletFooter( CompositeScript compositeScript, ScriptEngine engine )
+	public String getScriptletFooter( Document document, ScriptEngine engine )
 	{
 		return "";
 	}
 
-	public String getTextAsProgram( CompositeScript compositeScript, ScriptEngine engine, String content )
+	public String getTextAsProgram( Document document, ScriptEngine engine, String content )
 	{
 		return content;
 	}
 
-	public String getExpressionAsProgram( CompositeScript compositeScript, ScriptEngine engine, String content )
+	public String getExpressionAsProgram( Document document, ScriptEngine engine, String content )
 	{
 		return Tag.BEGIN + content + Tag.END;
 	}
 
-	public String getExpressionAsInclude( CompositeScript compositeScript, ScriptEngine engine, String content )
+	public String getExpressionAsInclude( Document document, ScriptEngine engine, String content )
 	{
 		return BasicTemplate.TAG_IMPORT_BEGIN + content + Tag.END;
 	}
 
-	public String getInvocationAsProgram( CompositeScript compositeScript, ScriptEngine engine, String content )
+	public String getInvocationAsProgram( Document document, ScriptEngine engine, String content )
 	{
 		return "";
 	}

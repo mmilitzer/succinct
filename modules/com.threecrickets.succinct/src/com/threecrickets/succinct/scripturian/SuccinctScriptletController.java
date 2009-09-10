@@ -16,13 +16,13 @@ import java.util.Map;
 import javax.script.ScriptContext;
 import javax.script.ScriptException;
 
-import com.threecrickets.scripturian.ScriptContextController;
+import com.threecrickets.scripturian.ScriptletController;
 import com.threecrickets.succinct.TemplateSource;
 import com.threecrickets.succinct.Caster;
 import com.threecrickets.succinct.Filler;
 import com.threecrickets.succinct.Formatter;
 
-public abstract class SuccinctScriptContextController implements ScriptContextController
+public abstract class SuccinctScriptletController implements ScriptletController
 {
 	//
 	// Constants
@@ -42,7 +42,7 @@ public abstract class SuccinctScriptContextController implements ScriptContextCo
 	// Construction
 	//
 
-	public SuccinctScriptContextController( TemplateSource templateSource, Formatter formatter, Filler filler )
+	public SuccinctScriptletController( TemplateSource templateSource, Formatter formatter, Filler filler )
 	{
 		this.templateSource = templateSource;
 		this.formatter = formatter;
@@ -50,7 +50,7 @@ public abstract class SuccinctScriptContextController implements ScriptContextCo
 		caster = null;
 	}
 
-	public SuccinctScriptContextController( TemplateSource templateSource, Formatter formatter, Caster<Map<String, String>> caster )
+	public SuccinctScriptletController( TemplateSource templateSource, Formatter formatter, Caster<Map<String, String>> caster )
 	{
 		this.templateSource = templateSource;
 		this.formatter = formatter;
@@ -85,7 +85,7 @@ public abstract class SuccinctScriptContextController implements ScriptContextCo
 	public abstract Map<String, String> getCasterAttributes();
 
 	//
-	// ScriptContextController
+	// ScriptletController
 	//
 
 	public void initialize( ScriptContext scriptContext ) throws ScriptException
