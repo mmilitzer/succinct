@@ -36,6 +36,11 @@ public class SuccinctScriptletParsingHelper implements ScriptletParsingHelper
 		return false;
 	}
 
+	public boolean isCompilable()
+	{
+		return true;
+	}
+
 	public String getScriptletHeader( Document document, ScriptEngine engine )
 	{
 		return "";
