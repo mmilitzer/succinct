@@ -14,13 +14,13 @@ package com.threecrickets.succinct.scripturian;
 import java.util.Map;
 
 import javax.script.ScriptContext;
-import javax.script.ScriptException;
 
 import com.threecrickets.scripturian.ScriptletController;
-import com.threecrickets.succinct.TemplateSource;
+import com.threecrickets.scripturian.exception.DocumentRunException;
 import com.threecrickets.succinct.Caster;
 import com.threecrickets.succinct.Filler;
 import com.threecrickets.succinct.Formatter;
+import com.threecrickets.succinct.TemplateSource;
 
 public abstract class SuccinctScriptletController implements ScriptletController
 {
@@ -88,7 +88,7 @@ public abstract class SuccinctScriptletController implements ScriptletController
 	// ScriptletController
 	//
 
-	public void initialize( ScriptContext scriptContext ) throws ScriptException
+	public void initialize( ScriptContext scriptContext ) throws DocumentRunException
 	{
 		scriptContext.setAttribute( SOURCE, templateSource, ScriptContext.ENGINE_SCOPE );
 		if( formatter != null )
