@@ -1,2 +1,2 @@
 jsr-223			?
-scripturian		1.0 (Revision 101)
+scripturian		1.0 (Revision 103)
