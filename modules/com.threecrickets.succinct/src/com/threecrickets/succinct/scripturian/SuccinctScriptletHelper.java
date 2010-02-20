@@ -14,58 +14,42 @@ package com.threecrickets.succinct.scripturian;
 import javax.script.ScriptEngine;
 
 import com.threecrickets.scripturian.Document;
-import com.threecrickets.scripturian.ScriptletParsingHelper;
+import com.threecrickets.scripturian.ScriptletHelper;
 import com.threecrickets.scripturian.annotation.ScriptEngines;
 import com.threecrickets.succinct.BasicTemplate;
 import com.threecrickets.succinct.chunk.Tag;
 
 /**
- * An {@link ScriptletParsingHelper} that supports Succinct templates.
+ * An {@link ScriptletHelper} that supports Succinct templates.
  * 
  * @author Tal Liron
  */
 @ScriptEngines("succinct")
-public class SuccinctScriptletParsingHelper implements ScriptletParsingHelper
+public class SuccinctScriptletHelper extends ScriptletHelper
 {
 	//
-	// ScriptletParsingHelper
+	// ScriptletHelper
 	//
 
-	public boolean isPrintOnEval()
-	{
-		return false;
-	}
-
-	public boolean isCompilable()
-	{
-		return true;
-	}
-
-	public String getScriptletHeader( Document document, ScriptEngine engine )
-	{
-		return "";
-	}
-
-	public String getScriptletFooter( Document document, ScriptEngine engine )
-	{
-		return "";
-	}
-
+	@Override
 	public String getTextAsProgram( Document document, ScriptEngine engine, String content )
 	{
 		return content;
 	}
 
+	@Override
 	public String getExpressionAsProgram( Document document, ScriptEngine engine, String content )
 	{
 		return Tag.BEGIN + content + Tag.END;
 	}
 
+	@Override
 	public String getExpressionAsInclude( Document document, ScriptEngine engine, String content )
 	{
 		return BasicTemplate.TAG_IMPORT_BEGIN + content + Tag.END;
 	}
 
+	@Override
 	public String getInvocationAsProgram( Document document, ScriptEngine engine, String content )
 	{
 		return "";
