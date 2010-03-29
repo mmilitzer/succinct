@@ -13,16 +13,18 @@ package com.threecrickets.succinct.scripturian;
 
 import java.util.Map;
 
-import javax.script.ScriptContext;
-
-import com.threecrickets.scripturian.ScriptletController;
-import com.threecrickets.scripturian.exception.DocumentRunException;
+import com.threecrickets.scripturian.ExecutionContext;
+import com.threecrickets.scripturian.ExecutionController;
+import com.threecrickets.scripturian.exception.ExecutionException;
 import com.threecrickets.succinct.Caster;
 import com.threecrickets.succinct.Filler;
 import com.threecrickets.succinct.Formatter;
 import com.threecrickets.succinct.TemplateSource;
 
-public abstract class SuccinctScriptletController implements ScriptletController
+/**
+ * @author Tal Liron
+ */
+public abstract class SuccinctExecutionController implements ExecutionController
 {
 	//
 	// Constants
@@ -42,7 +44,7 @@ public abstract class SuccinctScriptletController implements ScriptletController
 	// Construction
 	//
 
-	public SuccinctScriptletController( TemplateSource templateSource, Formatter formatter, Filler filler )
+	public SuccinctExecutionController( TemplateSource templateSource, Formatter formatter, Filler filler )
 	{
 		this.templateSource = templateSource;
 		this.formatter = formatter;
@@ -50,7 +52,7 @@ public abstract class SuccinctScriptletController implements ScriptletController
 		caster = null;
 	}
 
-	public SuccinctScriptletController( TemplateSource templateSource, Formatter formatter, Caster<Map<String, String>> caster )
+	public SuccinctExecutionController( TemplateSource templateSource, Formatter formatter, Caster<Map<String, String>> caster )
 	{
 		this.templateSource = templateSource;
 		this.formatter = formatter;
@@ -88,22 +90,22 @@ public abstract class SuccinctScriptletController implements ScriptletController
 	// ScriptletController
 	//
 
-	public void initialize( ScriptContext scriptContext ) throws DocumentRunException
+	public void initialize( ExecutionContext executionContext ) throws ExecutionException
 	{
-		scriptContext.setAttribute( SOURCE, templateSource, ScriptContext.ENGINE_SCOPE );
+		executionContext.getAttributes().put( SOURCE, templateSource );
 		if( formatter != null )
-			scriptContext.setAttribute( FORMATTER, formatter, ScriptContext.ENGINE_SCOPE );
-		scriptContext.setAttribute( SOURCE, templateSource, ScriptContext.ENGINE_SCOPE );
+			executionContext.getAttributes().put( FORMATTER, formatter );
+		executionContext.getAttributes().put( SOURCE, templateSource );
 		if( filler != null )
-			scriptContext.setAttribute( FILLER, filler, ScriptContext.ENGINE_SCOPE );
+			executionContext.getAttributes().put( FILLER, filler );
 		else
 		{
-			scriptContext.setAttribute( CASTER, caster, ScriptContext.ENGINE_SCOPE );
-			scriptContext.setAttribute( CASTER_ATTRIBUTES, getCasterAttributes(), ScriptContext.ENGINE_SCOPE );
+			executionContext.getAttributes().put( CASTER, caster );
+			executionContext.getAttributes().put( CASTER_ATTRIBUTES, getCasterAttributes() );
 		}
 	}
 
-	public void finalize( ScriptContext scriptContext )
+	public void finalize( ExecutionContext documentContext )
 	{
 	}
 

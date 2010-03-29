@@ -17,6 +17,10 @@ import com.threecrickets.scripturian.DocumentSource;
 import com.threecrickets.succinct.TemplateSource;
 import com.threecrickets.succinct.TemplateSourceException;
 
+/**
+ * @author Tal Liron
+ * @param <D>
+ */
 public class ScripturianTemplateSource<D> implements TemplateSource
 {
 	//
@@ -36,7 +40,7 @@ public class ScripturianTemplateSource<D> implements TemplateSource
 	{
 		try
 		{
-			return documentSource.getDocumentDescriptor( name ).getText();
+			return documentSource.getDocument( name ).getSourceCode();
 		}
 		catch( IOException x )
 		{

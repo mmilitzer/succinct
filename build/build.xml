@@ -56,7 +56,7 @@
 	</target>
 	
 	<target name="package" depends="deploy, jar" description="Create Succinct zips">
-		<zip destfile="${dist}/succinct.zip">
+		<zip destfile="succinct.zip">
 			<fileset dir="${content}" excludes="src/" />
 		</zip>
 	</target>
