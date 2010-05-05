@@ -30,10 +30,19 @@ import com.threecrickets.succinct.RichTemplate;
 import com.threecrickets.succinct.TemplateSource;
 import com.threecrickets.succinct.TemplateSourceException;
 import com.threecrickets.succinct.TemplateUtil;
-import com.threecrickets.succinct.scripturian.SuccinctExecutionController;
 
 public class SuccinctScriptEngine implements ScriptEngine, Compilable
 {
+	public static final String SOURCE = "templateSource";
+
+	public static final String FORMATTER = "templateFormatter";
+
+	public static final String FILLER = "templateFiller";
+
+	public static final String CASTER = "templateCaster";
+
+	public static final String CASTER_ATTRIBUTES = "templateCasterAttributes";
+
 	//
 	// ScriptEngine
 	//
@@ -163,7 +172,7 @@ public class SuccinctScriptEngine implements ScriptEngine, Compilable
 
 		ScriptContext scriptContext = getContext();
 		if( scriptContext != null )
-			rawTemplateSource = (TemplateSource) scriptContext.getAttribute( SuccinctExecutionController.SOURCE, ScriptContext.ENGINE_SCOPE );
+			rawTemplateSource = (TemplateSource) scriptContext.getAttribute( SOURCE, ScriptContext.ENGINE_SCOPE );
 
 		if( rawTemplateSource == null )
 			rawTemplateSource = ( (SuccinctScriptEngineFactory) getFactory() ).getTemplateSource();

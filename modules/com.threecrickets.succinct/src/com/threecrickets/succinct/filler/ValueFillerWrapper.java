@@ -22,7 +22,7 @@ import com.threecrickets.succinct.Filler;
  * 
  * @author Tal Liron
  */
-public class FillerValueWrapper implements Filler
+public class ValueFillerWrapper implements Filler
 {
 	//
 	// Static operations
@@ -30,20 +30,20 @@ public class FillerValueWrapper implements Filler
 
 	public static Filler newTemplateFillerValueWrapper( Object object, Filler parentFiller )
 	{
-		return new FillerValueWrapper( object, parentFiller );
+		return new ValueFillerWrapper( object, parentFiller );
 	}
 
 	//
 	// Construction
 	//
 
-	public FillerValueWrapper( Object object )
+	public ValueFillerWrapper( Object object )
 	{
 		this.object = object;
 		this.parentFiller = null;
 	}
 
-	public FillerValueWrapper( Object object, Filler parentFiller )
+	public ValueFillerWrapper( Object object, Filler parentFiller )
 	{
 		this.object = object;
 		this.parentFiller = parentFiller;

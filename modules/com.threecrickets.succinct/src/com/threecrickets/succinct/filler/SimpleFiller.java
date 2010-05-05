@@ -24,6 +24,8 @@ import com.threecrickets.succinct.Filler;
  * A serializable {@link Filler} for which tags can be added programmatically.
  * Note that if a tag already exists, the {@link #setValue(String, Object)}
  * treats it as a nested cast instead.
+ * <p>
+ * The class makes no concurrency guarantees on values. It's up to you!
  * 
  * @author Tal Liron
  */
@@ -38,15 +40,15 @@ public class SimpleFiller implements Filler
 		this( new HashMap<String, Object>() );
 	}
 
-	public SimpleFiller( Map<String, ?> castMap )
+	public SimpleFiller( Map<String, ?> values )
 	{
-		this( castMap, new HashMap<String, Iterable<? extends Filler>>() );
+		this( values, new HashMap<String, Iterable<? extends Filler>>() );
 	}
 
-	public SimpleFiller( Map<String, ?> castMap, Map<String, Iterable<? extends Filler>> nestedCastMap )
+	public SimpleFiller( Map<String, ?> values, Map<String, Iterable<? extends Filler>> iterableValues )
 	{
-		this.values = castMap;
-		this.nestedValues = nestedCastMap;
+		this.values = values;
+		this.iterableValues = iterableValues;
 	}
 
 	//
@@ -61,31 +63,31 @@ public class SimpleFiller implements Filler
 
 	public void setIterableValue( String iteratorKey, Iterable<? extends Filler> values )
 	{
-		nestedValues.put( iteratorKey, values );
+		iterableValues.put( iteratorKey, values );
 	}
 
 	public void setIterableValue( String iteratorKey, Filler filler )
 	{
 		if( filler != null )
-			nestedValues.put( iteratorKey, Collections.singleton( filler ) );
+			iterableValues.put( iteratorKey, Collections.singleton( filler ) );
 		else
-			nestedValues.put( iteratorKey, null );
+			iterableValues.put( iteratorKey, null );
 	}
 
 	@SuppressWarnings("unchecked")
 	public void addIterableValue( String tag, Object value )
 	{
-		List<Filler> list = (List<Filler>) nestedValues.get( tag );
+		List<Filler> list = (List<Filler>) iterableValues.get( tag );
 		if( list == null )
 		{
 			list = new ArrayList<Filler>();
-			nestedValues.put( tag, list );
+			iterableValues.put( tag, list );
 		}
 
 		if( value instanceof Filler )
 			list.add( (Filler) value );
 		else
-			list.add( new FillerValueWrapper( value ) );
+			list.add( new ValueFillerWrapper( value ) );
 	}
 
 	//
@@ -103,17 +105,17 @@ public class SimpleFiller implements Filler
 
 	public Iterable<? extends Filler> getFillers( String iteratorKey ) throws CastException
 	{
-		if( nestedValues == null )
+		if( iterableValues == null )
 			throw new CastException( iteratorKey );
-		if( !nestedValues.containsKey( iteratorKey ) )
+		if( !iterableValues.containsKey( iteratorKey ) )
 			throw new CastException( iteratorKey );
-		return nestedValues.get( iteratorKey );
+		return iterableValues.get( iteratorKey );
 	}
 
-	// //////////iteratorKey/////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////
 	// Private
 
 	public final Map<String, ?> values;
 
-	public final Map<String, Iterable<? extends Filler>> nestedValues;
+	public final Map<String, Iterable<? extends Filler>> iterableValues;
 }

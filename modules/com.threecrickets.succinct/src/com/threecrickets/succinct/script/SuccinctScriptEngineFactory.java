@@ -128,15 +128,9 @@ public class SuccinctScriptEngineFactory implements ScriptEngineFactory
 
 	private static final String LANGUAGE_VERSION = "1.0";
 
-	private static final List<String> NAMES = Arrays.asList( new String[]
-	{
-		"succinct"
-	} );
+	private static final List<String> NAMES = Arrays.asList( "succinct" );
 
-	private static final List<String> EXTENSIONS = Arrays.asList( new String[]
-	{
-		"succinct"
-	} );
+	private static final List<String> EXTENSIONS = Arrays.asList( "succinct" );
 
 	private static final List<String> MIME_TYPES = Collections.emptyList();
 

@@ -23,7 +23,6 @@ import com.threecrickets.succinct.Caster;
 import com.threecrickets.succinct.Filler;
 import com.threecrickets.succinct.Formatter;
 import com.threecrickets.succinct.Template;
-import com.threecrickets.succinct.scripturian.SuccinctExecutionController;
 
 public class SuccinctCompiledScript extends CompiledScript
 {
@@ -45,10 +44,10 @@ public class SuccinctCompiledScript extends CompiledScript
 	@Override
 	public Object eval( ScriptContext scriptContext ) throws ScriptException
 	{
-		Formatter formatter = (Formatter) scriptContext.getAttribute( SuccinctExecutionController.FORMATTER );
+		Formatter formatter = (Formatter) scriptContext.getAttribute( SuccinctScriptEngine.FORMATTER );
 		template.setFormatter( formatter );
 
-		Filler filler = (Filler) scriptContext.getAttribute( SuccinctExecutionController.FILLER );
+		Filler filler = (Filler) scriptContext.getAttribute( SuccinctScriptEngine.FILLER );
 		if( filler != null )
 		{
 			try
@@ -62,11 +61,11 @@ public class SuccinctCompiledScript extends CompiledScript
 			}
 		}
 
-		Caster<Map<String, String>> caster = (Caster<Map<String, String>>) scriptContext.getAttribute( SuccinctExecutionController.CASTER );
+		Caster<Map<String, String>> caster = (Caster<Map<String, String>>) scriptContext.getAttribute( SuccinctScriptEngine.CASTER );
 		if( caster == null )
-			throw new ScriptException( "Script context must contain either a \"" + SuccinctExecutionController.FILLER + "\" or a \"" + SuccinctExecutionController.CASTER + "\" attribute" );
+			throw new ScriptException( "Script context must contain either a \"" + SuccinctScriptEngine.FILLER + "\" or a \"" + SuccinctScriptEngine.CASTER + "\" attribute" );
 
-		Map<String, String> casterAttributes = (Map<String, String>) scriptContext.getAttribute( SuccinctExecutionController.CASTER_ATTRIBUTES );
+		Map<String, String> casterAttributes = (Map<String, String>) scriptContext.getAttribute( SuccinctScriptEngine.CASTER_ATTRIBUTES );
 
 		try
 		{
