@@ -21,6 +21,13 @@ import com.threecrickets.succinct.CastException;
 import com.threecrickets.succinct.Filler;
 
 /**
+ * A {@link Filler} that supports getting values from a plain-old Java object
+ * (POJO) via the Java bean property mechanism.
+ * <p>
+ * The dot convention is used to recursively delve into properties. For example,
+ * the key {@code obj1.prop1.prop2.prop3} would be identical to the Java call
+ * {@code obj.getProp1().getProp2().getProp3()}.
+ * 
  * @author Tal Liron
  */
 public class BeanFillerWrapper implements Filler
@@ -134,5 +141,4 @@ public class BeanFillerWrapper implements Filler
 	private final Object bean;
 
 	private final BeanInfo beanInfo;
-
 }
