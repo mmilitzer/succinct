@@ -57,6 +57,7 @@
 	<target name="javadocs-unless" depends="dependencies" description="Create API documentation" unless="javadocs-present">
 		<javadoc access="protected" author="true" excludepackagenames="**.internal.*" destdir="${distribution.api}" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" source="${jvm.version}" sourcepath="${component.source}" splitindex="true" use="true" version="true" windowtitle="${documentation.title} ${version}" doctitle="${documentation.title} ${version}">
 			<link href="${jvm.docs}" />
+			<link href="http://docs.oracle.com/javase/6/docs/api/" /><!-- for javax.script -->
 			<classpath refid="dependencies" />
 			<bottom>
 				<![CDATA[<i>${documentation.copyright}</i>]]>
