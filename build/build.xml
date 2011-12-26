@@ -38,7 +38,7 @@
 	</target>
 
 	<target name="dependencies" depends="ivy" description="Resolve dependencies">
-		<ivy:resolve file="ivy/${component}.xml" log="download-only" resolveId="${component}" />
+		<ivy:resolve file="ivy/${component}.xml" type="jar" log="download-only" resolveId="${component}" />
 		<ivy:cachepath pathid="dependencies" type="jar" resolveId="${component}" />
 	</target>
 

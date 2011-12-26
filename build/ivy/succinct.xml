@@ -10,6 +10,6 @@
 		<conf name="default" visibility="public" />
 	</configurations>
 	<dependencies>
-		<dependency org="javax.script" name="script-api" rev="1" conf="default->*" transitive="false" />
+		<dependency org="javax.script" name="script-api" rev="1" transitive="false" />
 	</dependencies>
 </ivy-module>
