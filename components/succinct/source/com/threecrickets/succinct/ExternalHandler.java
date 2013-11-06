@@ -12,7 +12,7 @@
 package com.threecrickets.succinct;
 
 /**
- * For handling <code>${external <i>external-key></i>}</code> tags in a
+ * For handling <code>${external <i>external-key</i>}</code> tags in a
  * {@link Template}.
  * 
  * @author Tal Liron
