@@ -12,6 +12,18 @@ information.
 
 [![Download](http://threecrickets.com/media/download.png "Download")](http://threecrickets.com/succinct/download/)
 
+Maven:
+
+    <repository>
+        <id>threecrickets</id>
+        <name>Three Crickets Repository</name>
+        <url>http://repository.threecrickets.com/maven/</url>
+    </repository>
+    <dependency>
+        <groupId>com.threecrickets.succinct</groupId>
+        <artifactId>succinct</artifactId>
+    </dependency>
+
 
 Building Succinct
 -----------------
