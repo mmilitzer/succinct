@@ -1,5 +1,5 @@
 
-Succinct is Copyright 2000-2015 Three Crickets LLC:
+Succinct is Copyright 2000-2016 Three Crickets LLC:
 
 http://threecrickets.com/
   
